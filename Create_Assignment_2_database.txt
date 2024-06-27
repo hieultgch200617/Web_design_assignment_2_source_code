@@ -1,0 +1,108 @@
+DROP DATABASE IF EXISTS 1633_Assignment;	
+CREATE DATABASE 1633_Assignment;
+USE 1633_Assignment;
+
+CREATE TABLE Accounts (
+	accountID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	roles VARCHAR(50) NOT NULL, 	/* Admin, Nhà Tuyển Dụng, Sinh Viên */
+	username VARCHAR(55) NOT NULL,
+	hashedPassword VARCHAR(255) NOT NULL,
+	UNIQUE (username)
+);
+
+CREATE TABLE Recruiters (
+	recruiterID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(255) NOT NULL,
+	address VARCHAR(255) NOT NULL,
+	intro VARCHAR(5000) NOT NULL, /* Phone -> intro */
+	website VARCHAR(255),	/* email -> website */
+	accountID INT UNSIGNED NOT NULL,
+	
+	FOREIGN KEY (accountID) REFERENCES Accounts(accountID)
+);
+
+CREATE TABLE Recruitee (
+	recruiteeID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(255) NOT NULL,
+	dateOfBirth DATE NOT NULL,
+	address VARCHAR(255) NOT NULL,
+	phone VARCHAR(12) NOT NULL,
+	email VARCHAR(255) NOT NULL,
+	experience VARCHAR(500) NOT NULL,
+	major VARCHAR(255) NOT NULL,
+	accountID INT UNSIGNED NOT NULL,
+	
+	FOREIGN KEY (accountID) REFERENCES Accounts(accountID)
+);
+
+CREATE TABLE Post (
+	postID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	postName VARCHAR(255) NOT NULL,
+	recruiterName VARCHAR(255) NOT NULL,
+	major VARCHAR(255) NOT NULL,
+	minSalary INT NOT NULL, /* triệu VND */
+	workDetails VARCHAR(5000),
+	experience VARCHAR(500),
+	due DATE NOT NULL,
+	recruiterID INT UNSIGNED NOT NULL,
+	
+	FOREIGN KEY (recruiterID) REFERENCES Recruiters(recruiterID)
+);
+
+CREATE TABLE RecruitmentDetails (
+	postID INT UNSIGNED NOT NULL,
+	recruiteeID INT UNSIGNED NOT NULL,
+	postName VARCHAR(255) NOT NULL,
+	recruiteeName VARCHAR(255) NOT NULL,
+	recruiterName VARCHAR(255) NOT NULL,
+	status VARCHAR(50) NOT NULL DEFAULT 'Đang chờ phê duyệt',  /*Đang chờ phê duyệt, Đang chờ phỏng vấn, Đang chờ kết quả, Được nhận, Bị loại */
+	CV VARCHAR(255) NOT NULL,
+	
+	PRIMARY KEY (postID, recruiteeID),
+	
+	FOREIGN KEY (postID) REFERENCES Post(postID),
+	FOREIGN KEY (recruiteeID) REFERENCES Recruitee(recruiteeID)
+);
+
+ALTER TABLE Recruiters AUTO_INCREMENT = 1000;
+ALTER TABLE Recruitee AUTO_INCREMENT = 100000;
+ALTER TABLE Post AUTO_INCREMENT = 10000;
+
+INSERT INTO Accounts (roles, username, hashedPassword) VALUES ('Admin', 'admin1', SHA1('abc12345'));
+INSERT INTO Accounts (roles, username, hashedPassword) VALUES ('Admin', 'admin2', SHA1('abc12345'));
+INSERT INTO Accounts (roles, username, hashedPassword) VALUES ('Admin', 'admin3', SHA1('abc12345'));
+INSERT INTO Accounts (roles, username, hashedPassword) VALUES ('Sinh Viên', 'sinhvien1', SHA1('abc12345'));
+INSERT INTO Accounts (roles, username, hashedPassword) VALUES ('Sinh Viên', 'sinhvien2', SHA1('abc12345'));
+INSERT INTO Accounts (roles, username, hashedPassword) VALUES ('Sinh Viên', 'sinhvien3', SHA1('abc12345'));
+INSERT INTO Accounts (roles, username, hashedPassword) VALUES ('Nhà Tuyển Dụng', 'nhatuyendung1', SHA1('abc12345'));
+INSERT INTO Accounts (roles, username, hashedPassword) VALUES ('Nhà Tuyển Dụng', 'nhatuyendung2', SHA1('abc12345'));
+INSERT INTO Accounts (roles, username, hashedPassword) VALUES ('Nhà Tuyển Dụng', 'nhatuyendung3', SHA1('abc12345'));
+
+INSERT INTO Recruitee (name, dateOfBirth, address, phone, email, experience, major, accountID) VALUES ('Nguyễn Văn Nam', '2002-9-19', '77 Đức Giang', '0987654321', 'NguyenVanNam2002@gmail.com', 'Không', 'Công nghệ thông tin', 4);
+INSERT INTO Recruitee (name, dateOfBirth, address, phone, email, experience, major, accountID) VALUES ('Phạm Thị Hoài', '2001-3-11', '49 Yên Viên', '0367891234', 'PhamThiHoai2001@gmail.com', 'Không', 'Công nghệ phần mềm', 5);
+INSERT INTO Recruitee (name, dateOfBirth, address, phone, email, experience, major, accountID) VALUES ('Lê Văn Toàn', '2000-12-30', '50 Long Biên', '0123456789', 'LeVanToan2000@gmail.com', 'Không', 'Truyền thông', 6);
+
+INSERT INTO recruiters (name, address, intro, website, accountID) VALUES ('HITSUJI CONSULTING VIETNAM', 'Tòa nhà Kailash, 3 Ng. 82 P. Dịch Vọng Hậu, Dịch Vọng Hậu, Cầu Giấy, Hà Nội', 'Hitsuji Consulting Vietnam is one of the leading HR Consulting Agencies in Vietnam. Our Recruitment Consultants are all professionals with extensive market knowledge and experience in HR Consulting for foreign companies and groups. Our goal is to become a Strategic HR partner, not only companies in Vietnam but also in Southeast Asian countries. ', 'https://hitsuji-vn.com/', 7);
+INSERT INTO recruiters (name, address, intro, website, accountID) VALUES ('CÔNG TY CỔ PHẦN ĐẦU TƯ KỸ THUẬT SỐ VIỆT (VDI)', 'Tòa nhà ICON4, 243A Đê La Thành, Hà Nội', 'Công ty Cổ phần Đầu tư Kỹ thuật Số Việt (VDI Joint Stock Company) được thành lập vào ngày 14/10/2011 với tên gọi ban đầu là Công ty Cổ phần thương mại Viễn thông Tin học Bưu điện.
+Trong suốt quá trình hoạt động, VDI đã có những chuyển đổi tích cực về định hướng, chiến lược, dẫn tới những bước phát triển không ngừng trong lĩnh vực cung cấp giải pháp tích hợp, dịch vụ số cho các ngành trọng điểm như Ngân hàng, Viễn thông, Công nghệ thông tin…', 'http://vdigital.vn/gioi-thieu/', 8);
+INSERT INTO recruiters (name, address, intro, website, accountID) VALUES ('HEADHUNTER HRCHANNELS GROUP', 'Tòa MD Complex, Hàm Nghi, Hà Nội, Việt Nam.', 'Recruitment Service of Headhunter HRchannels Group
+With more than 14 years of combined recruitment experience and a massive referral network, we are uniquely positioned to quickly locate highly qualified C-level and senior management candidates carry out your vision.', 'http://HRchannels.com', 9);
+
+INSERT INTO post (postName, recruiterName, major, minSalary, workDetails, experience, due, recruiterID) VALUES ('KỸ SƯ IT VẬN HÀNH VÀ BẢO TRÌ MES', 'HITSUJI CONSULTING VIETNAM', 
+'Công nghệ phần mềm', '15', 'Bảo trì bất thường hàng ngày hệ thống sản xuất MES, đồng thời phân loại và phân tích các bất thường thường gặp.
+Thu thập các yêu cầu MES mới để nâng cấp hoạt động kinh doanh dây chuyền sản xuất sản phẩm, chuẩn bị kế hoạch nhu cầu và trình cho các kỹ sư phát triển.
+Tiến hành đào tạo và giảng dạy về quy trình sản xuất MES và các quy trình vận hành liên quan đến hệ thống MES cho người sử dụng sản xuất.
+Công việc phát triển và triển khai tương tác dữ liệu thiết bị đầu cuối mô-đun MES C#, tham gia vào giao diện dữ liệu và khai thác và làm sạch dữ liệu.
+Phân tích dự phòng cơ sở dữ liệu MES, theo dõi và xử lý các dự án cân bằng dữ liệu bất thường.', 'trên 2 năm kinh nghiệm', '2024-12-20', 1000);
+INSERT INTO post (postName, recruiterName, major, minSalary, workDetails, experience, due, recruiterID) VALUES ('System Engineer (Kỹ sư Hệ thống)', 
+'CÔNG TY CỔ PHẦN ĐẦU TƯ KỸ THUẬT SỐ VIỆT (VDI)', 'Công nghệ phần mềm', '20', 'Triển khai, cấu hình tích hợp hệ thống và giải pháp của các hãng Cisco, HPE, DellEMC, Fujitsu, SuperMicro, VMware, RedHat, Oracle, Microsoft…
+Cập nhật, nghiên cứu và làm chủ các giải pháp CNTT của các hãng. Khảo sát, thiết kế giải pháp kỹ thuật, tư vấn các dự án CNTT.
+Chuẩn bị Hồ sơ dự thầu về mặt kỹ thuật. Triển khai, Hỗ trợ kỹ thuật sau triển khai. Đào tạo và chuyển giao công nghệ', 'trên 2 năm kinh nghiệm', '2024-12-25', 1001);
+INSERT INTO post (postName, recruiterName, major, minSalary, workDetails, experience, due, recruiterID) VALUES ('IT Assistant Manager', 'HEADHUNTER HRCHANNELS GROUP', 
+'Công nghệ phần mềm', '40', 'Conduct planning, installation, configuration, troubleshooting, upkeep, and upgrades for operating systems.
+Examine, arrange, install, configure, troubleshoot, maintain, and update the operating system hardware and software interfaces.
+Establish thorough flow charts and diagrams that describe the features and operations of the systems.
+Investigate and suggest the creation, acquisition, and utilization of hardware and software.
+Diagnose and fix issues with user access, component configuration, hardware, software, and connectivity.', '3-5 năm kinh nghiệm', '2024-12-30', 1002);
+
+INSERT INTO recruitmentdetails (postID, recruiteeID, postName, recruiteeName, recruiterName, status, CV) VALUES (10000, 100000, 'KỸ SƯ IT VẬN HÀNH VÀ BẢO TRÌ MES', 'Nguyễn Văn Nam', 'HITSUJI CONSULTING VIETNAM', 'Đang chờ phê duyệt', 'CV.docx');
