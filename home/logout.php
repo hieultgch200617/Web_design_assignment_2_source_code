@@ -6,4 +6,6 @@ $_SESSION['accountRoles'] = "";
 
 $_SESSION['status'] = 0;    // Chuyển thành chưa đăng nhập
 redirect_to('homepage.php');    // Quay về trang chủ
-?>
+
+
+

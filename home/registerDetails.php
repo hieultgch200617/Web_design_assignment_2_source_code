@@ -3,49 +3,47 @@ require_once('../lib/database.php');
 require_once('../lib/initialize.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){ // Nhấn tạo tài khoản
-    if (isFormValidated()){
-        // Tạo thông tin tài khoản mới 
-        $newAccount = [];
-        $newAccount['roles'] = $_SESSION['newRoles'];
-        $newAccount['username'] = $_SESSION['newUsername'];
-        $newAccount['hashedPassword'] = sha1($_SESSION['newPassword']);
-        $newAccount['findPassword'] = $_SESSION['newFindPassword'];
-        insert_account($newAccount);    // Thêm tài khoản mới vào database
-        $accountID = mysqli_insert_id($db);     // Lấy accountID của tài khoản mới
+    // Tạo thông tin tài khoản mới 
+    $newAccount = [];
+    $newAccount['roles'] = $_SESSION['newRoles'];
+    $newAccount['username'] = $_SESSION['newUsername'];
+    $newAccount['hashedPassword'] = sha1($_SESSION['newPassword']);
+    $newAccount['findPassword'] = $_SESSION['newFindPassword'];
+    insert_account($newAccount);    // Thêm tài khoản mới vào database
+    $accountID = mysqli_insert_id($db);     // Lấy accountID của tài khoản mới
 
-        //tài khoản mới là của Người Tìm Việc
-        if ($_SESSION['newRoles'] == "Người Tìm Việc"){
-            //tạo thông tin Người Tìm Việc
-            $newRecruitee = [];
-            $newRecruitee['name'] = $_POST['name'];
-            $newRecruitee['dateOfBirth'] = $_POST['dateOfBirth'];
-            $newRecruitee['address'] = $_POST['address'];
-            $newRecruitee['phone'] = $_POST['phone'];
-            $newRecruitee['email'] = $_POST['email'];
-            if ($_POST['experience'] == ""){    // kinh nghiệm mà bỏ trống thì đặt là Không
-                $newRecruitee['experience'] = "Không";
-            }else {
-                $newRecruitee['experience'] = $_POST['experience'];
-            }
-            $newRecruitee['major'] = $_POST['major'];
-            $newRecruitee['accountID'] = $accountID;
-
-            insert_recruitee($newRecruitee);    // Thêm thông tin Người Tìm Việc vào database
-            redirect_to('login.php'); // Quay về đăng nhập
-
-        //tài khoản mới là của nhà tuyển dụng
-        } elseif ($_SESSION['newRoles'] == "Nhà Tuyển Dụng"){
-            //tạo thông tin nhà tuyển dụng
-            $newRecruiter = [];
-            $newRecruiter['name'] = $_POST['name'];
-            $newRecruiter['address'] = $_POST['address'];
-            $newRecruiter['intro'] = $_POST['intro'];
-            $newRecruiter['website'] = $_POST['website'];
-            $newRecruiter['accountID'] = $accountID;
-
-            insert_recruiter($newRecruiter); // Thêm thông tin nhà tuyển dụng vào database
-            redirect_to('login.php');   // Quay về đăng nhập
+    //tài khoản mới là của Người Tìm Việc
+    if ($_SESSION['newRoles'] == "Người Tìm Việc"){
+        //tạo thông tin Người Tìm Việc
+        $newRecruitee = [];
+        $newRecruitee['name'] = $_POST['name'];
+        $newRecruitee['dateOfBirth'] = $_POST['dateOfBirth'];
+        $newRecruitee['address'] = $_POST['address'];
+        $newRecruitee['phone'] = $_POST['phone'];
+        $newRecruitee['email'] = $_POST['email'];
+        if ($_POST['experience'] == ""){    // kinh nghiệm mà bỏ trống thì đặt là Không
+            $newRecruitee['experience'] = "Không";
+        }else {
+            $newRecruitee['experience'] = $_POST['experience'];
         }
+        $newRecruitee['major'] = $_POST['major'];
+        $newRecruitee['accountID'] = $accountID;
+
+        insert_recruitee($newRecruitee);    // Thêm thông tin Người Tìm Việc vào database
+        redirect_to('login.php'); // Quay về đăng nhập
+
+    //tài khoản mới là của nhà tuyển dụng
+    } elseif ($_SESSION['newRoles'] == "Nhà Tuyển Dụng"){
+        //tạo thông tin nhà tuyển dụng
+        $newRecruiter = [];
+        $newRecruiter['name'] = $_POST['name'];
+        $newRecruiter['address'] = $_POST['address'];
+        $newRecruiter['intro'] = $_POST['intro'];
+        $newRecruiter['website'] = $_POST['website'];
+        $newRecruiter['accountID'] = $accountID;
+
+        insert_recruiter($newRecruiter); // Thêm thông tin nhà tuyển dụng vào database
+        redirect_to('login.php');   // Quay về đăng nhập
     }
 }
 
