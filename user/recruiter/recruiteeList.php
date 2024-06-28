@@ -2,10 +2,6 @@
 require_once('../../lib/database.php');
 require_once('../../lib/initialize.php');
 
-if ($_SESSION['accountRoles'] != "Nhà Tuyển Dụng") {
-    redirect_to('../../home/login.php');
-}
-
 if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     $_SESSION['postID'] = $_GET['id'];
 }
@@ -60,11 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         </nav>
     </header>
     <br><br>
-    <center><h2>Danh sách sinh viên đăng ký</h2></center>
+    <center><h2>Danh sách Người Tìm Việc đăng ký</h2></center>
     <br><br>
     <table class="list">
         <tr>
-            <th>Tên sinh viên</th>
+            <th>Tên Người Tìm Việc</th>
             <th>CV</th>
             <th>Trạng thái</th>
             <th>Lựa chọn</th>

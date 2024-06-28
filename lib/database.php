@@ -88,7 +88,7 @@ function find_all_recruiter_with_search($key){
 
 function find_all_users_account_with_search($key){
     global $db;
-    $sql = "SELECT * FROM Accounts Where (roles = 'Nhà Tuyển Dụng' OR roles = 'Sinh Viên') AND roles LIKE '%{$key}%' ORDER BY accountID DESC";
+    $sql = "SELECT * FROM Accounts Where (roles = 'Nhà Tuyển Dụng' OR roles = 'Người Tìm Việc') AND roles LIKE '%{$key}%' ORDER BY accountID DESC";
     $result = mysqli_query($db, $sql); 
     return $result;
 }
@@ -270,7 +270,7 @@ function find_recruitee_by_account_id($id){
 
 function find_all_users_account(){
     global $db;
-    $sql = "SELECT * FROM Accounts Where roles = 'Nhà Tuyển Dụng' OR roles = 'Sinh Viên' ORDER BY accountID DESC";
+    $sql = "SELECT * FROM Accounts Where roles = 'Nhà Tuyển Dụng' OR roles = 'Người Tìm Việc' ORDER BY accountID DESC";
     $result = mysqli_query($db, $sql); 
     return $result;
 }

@@ -2,10 +2,6 @@
 require_once('../../lib/database.php');
 require_once('../../lib/initialize.php');
 
-if ($_SESSION['accountRoles'] != "Nhà Tuyển Dụng") {
-    redirect_to('../../home/login.php');
-}
-
 $postID = $_GET['id'];
 $recruiteeID = $_GET['svID'];
 if ($_GET['status'] == "1"){

@@ -2,10 +2,6 @@
 require_once('../../lib/database.php');
 require_once('../../lib/initialize.php');
 
-if ($_SESSION['accountRoles'] != "Sinh Viên") {
-    redirect_to('../../home/login.php');
-}
-
 $id = $_GET['id'];
 $recruitment = find_recruitment_by_post_and_user_id($_SESSION['userID'], $id);
 $details = mysqli_fetch_assoc($recruitment);

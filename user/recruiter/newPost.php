@@ -2,9 +2,6 @@
 require_once('../../lib/database.php');
 require_once('../../lib/initialize.php');
 
-if ($_SESSION['accountRoles'] != "Nhà Tuyển Dụng") {
-    redirect_to('../../home/login.php');
-}
 
 $id = $_SESSION['userID'];
 $recruiter = find_recruiter_by_id($id);

@@ -5,13 +5,13 @@ require_once('../lib/initialize.php');  //yêu cầu file initialize.php để c
 $accountID = $_GET['id'];   //lấy id từ đường dẫn
 $roles = $_GET['roles'];    //lấy vai trò từ đường dẫn
 
-// xóa sinh viên
-if ($roles == "Sinh Viên"){
-    $user = find_recruitee_by_account_id($accountID);   // dùng accountID để tìm kiếm thông tin sinh viên
+// xóa Người Tìm Việc
+if ($roles == "Người Tìm Việc"){
+    $user = find_recruitee_by_account_id($accountID);   // dùng accountID để tìm kiếm thông tin Người Tìm Việc
     $recruitee = mysqli_fetch_assoc($user);
-    delete_all_recruitment_by_recruitee_id($recruitee['recruiteeID']);  // xóa tất phần ứng tuyển của sinh viên
-    delete_recruitee_by_id($recruitee['recruiteeID']);  // xóa thông tin sinh viên
-    delete_account_by_id($accountID);   // xóa tài khoản sinh viên
+    delete_all_recruitment_by_recruitee_id($recruitee['recruiteeID']);  // xóa tất phần ứng tuyển của Người Tìm Việc
+    delete_recruitee_by_id($recruitee['recruiteeID']);  // xóa thông tin Người Tìm Việc
+    delete_account_by_id($accountID);   // xóa tài khoản Người Tìm Việc
 //xóa nhà tuyển dụng
 }elseif ($roles == "Nhà Tuyển Dụng"){
     $user = find_recruiter_by_account_id($accountID);   // dùng accountID để tìm kiếm thông tin nhà tuyển dụng

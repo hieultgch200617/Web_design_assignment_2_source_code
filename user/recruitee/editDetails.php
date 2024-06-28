@@ -2,10 +2,6 @@
 require_once('../../lib/database.php');
 require_once('../../lib/initialize.php');
 
-if ($_SESSION['accountRoles'] != "Sinh Viên") {
-    redirect_to('../../home/login.php');
-}
-
 if ($_SERVER["REQUEST_METHOD"] == 'POST'){
     $id = $_POST['recruiteeID'];
 
@@ -97,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST'){
             <input type="hidden" name="recruiteeID" 
             value="<?php echo isFormValidated()? $userDetails['recruiteeID']: $_POST['recruiteeID'] ?>" required >
 
-            <label>Tên sinh viên</label> <!--required-->
+            <label>Tên Người Tìm Việc</label> <!--required-->
             <input type="text" name="name"  
             value="<?php echo isFormValidated()? $userDetails['name']: $_POST['name'] ?>" required>
             <br><br>

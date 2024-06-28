@@ -52,13 +52,13 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST'){
     <form>
         <center><h2>Thông tin người dùng </h2></center>
         <?php
-        // hiện thị thông tin sinh viên
-        if ($account['roles'] == "Sinh Viên")
+        // hiện thị thông tin Người Tìm Việc
+        if ($account['roles'] == "Người Tìm Việc")
         {
             $userDetails = find_recruitee_by_account_id($id);
             $userDetails = mysqli_fetch_assoc($userDetails);
             ?>
-            <label>Tên sinh viên: </label>
+            <label>Tên người tìm ệc: </label>
             <lable><?php echo $userDetails['name']; ?></lable>
             <br><br>
             <label>Năm sinh: </label>

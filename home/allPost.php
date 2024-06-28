@@ -47,7 +47,7 @@ require_once('../lib/initialize.php');
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.php" onclick="return confirm('Chắc chắn muốn đăng xuất?');">Đăng xuất</a>
                             </li>
-                        <?php elseif ($_SESSION['accountRoles'] == 'Sinh Viên'): ?> <!-- Nếu là tài khoản sinh viên -->
+                        <?php elseif ($_SESSION['accountRoles'] == 'Người Tìm Việc'): ?> <!-- Nếu là tài khoản Người Tìm Việc -->
                             <li class="nav-item">
                                 <a class="nav-link" href="../user/recruitee/userDetails.php">Người dùng</a>
                             </li>

@@ -2,10 +2,6 @@
 require_once('../../lib/database.php');
 require_once('../../lib/initialize.php');
 
-if ($_SESSION['accountRoles'] != "Sinh Viên") {
-    redirect_to('../../home/login.php');
-}
-
 $id = $_SESSION['accountID'];
 $account = find_recruitee_by_account_id($id);
 $accDetails = mysqli_fetch_assoc($account);
@@ -60,9 +56,9 @@ $userDetails = mysqli_fetch_assoc($user);
     <main>
         <form>
             <input type="hidden" name="recruiteeID" value="<?php echo $userDetails['recruiteeID'] ?>">
-            <center><h2>Thông tin sinh viên</h2></center>
+            <center><h2>Thông tin Người Tìm Việc</h2></center>
             <br><br>    
-            <label>Tên sinh viên: </label> <!--required-->
+            <label>Tên Người Tìm Việc: </label> <!--required-->
             <label><?php echo $userDetails['name']; ?></label>
             <br><br>
 

@@ -73,7 +73,7 @@ require_once('../../lib/initialize.php');
                     <td><?php echo $post['postName']; ?></td>
                     <td><?php echo $post['major']; ?> với <?php echo $post['experience']; ?></td>
                     <td><a href="<?php echo 'post.php?id='.$post['postID']; ?>" class="btn btn-success">Chi Tiết</a><br>
-                        <a href="<?php echo 'recruiteeList.php?id='.$post['postID']; ?>" class="btn btn-success">Sinh viên đăng ký</a><br>
+                        <a href="<?php echo 'recruiteeList.php?id='.$post['postID']; ?>" class="btn btn-success">Người Tìm Việc đăng ký</a><br>
                         <a href="<?php echo 'DeletePost.php?id='.$post['postID']; ?>" class="btn btn-danger"
                         onclick="return confirm('Are you sure to delete this post ?');">Xóa</a>
                     </td>
@@ -92,7 +92,7 @@ require_once('../../lib/initialize.php');
                         <td><?php echo $post['postName']; ?></td>
                         <td><?php echo $post['major']; ?> với <?php echo $post['experience']; ?></td>
                         <td><a href="<?php echo 'post.php?id='.$post['postID']; ?>" class="btn btn-success">Chi Tiết</a><br>
-                            <a href="<?php echo 'recruiteeList.php?id='.$post['postID']; ?>" class="btn btn-success">Sinh viên đăng ký</a><br>
+                            <a href="<?php echo 'recruiteeList.php?id='.$post['postID']; ?>" class="btn btn-success">Người Tìm Việc đăng ký</a><br>
                             <a href="<?php echo 'DeletePost.php?id='.$post['postID']; ?>" class="btn btn-danger"
                             onclick="return confirm('Are you sure to delete this post ?');">Xóa</a>
                         </td>

@@ -34,8 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $postDetails = mysqli_fetch_assoc($post);
 }
 
-// Kiểm tra xem sinh viên đã ứng tuyển vào bài đăng này hay chưa
-if ($_SERVER["REQUEST_METHOD"] == 'POST' && $_SESSION['accountRoles'] == "Sinh Viên"){    
+// Kiểm tra xem Người Tìm Việc đã ứng tuyển vào bài đăng này hay chưa
+if ($_SERVER["REQUEST_METHOD"] == 'POST' && $_SESSION['accountRoles'] == "Người Tìm Việc"){    
     $recruiteeAccount = find_recruitee_by_account_id($_SESSION['accountID']);
     $recruitee = mysqli_fetch_assoc($recruiteeAccount);
     $all_Recruitments = find_all_recruitment_by_userID($recruitee['recruiteeID']);
@@ -46,8 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST' && $_SESSION['accountRoles'] == "Sinh V
             $errors[] = 'Đã ứng tuyển cho bài đăng này, không thể ứng tuyển tiếp';
         }
     }
-} elseif ($_SERVER["REQUEST_METHOD"] == 'POST' && $_SESSION['accountRoles'] != "Sinh Viên"){
-    $errors[] = 'Chỉ sinh viên mới có thể ứng tuyển';
+} elseif ($_SERVER["REQUEST_METHOD"] == 'POST' && $_SESSION['accountRoles'] != "Người Tìm Việc"){
+    $errors[] = 'Chỉ Người Tìm Việc mới có thể ứng tuyển';
 }
 
 ?>
@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST' && $_SESSION['accountRoles'] == "Sinh V
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.php" onclick="return confirm('Chắc chắn muốn đăng xuất?');">Đăng xuất</a>
                             </li>
-                        <?php elseif ($_SESSION['accountRoles'] == 'Sinh Viên'): ?>
+                        <?php elseif ($_SESSION['accountRoles'] == 'Người Tìm Việc'): ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="../user/recruitee/userDetails.php">Người dùng</a>
                             </li>

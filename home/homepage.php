@@ -19,9 +19,6 @@ require_once('../lib/initialize.php');
                 <a class="navbar-brand" href="homepage.php">
                     <img src="../img/logo.png" style="width: 4rem"  alt="logo">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
                 <div class="collapse navbar-collapse" id="mynavbar">
                     <ul class="nav nav-tabs me-auto">
                     <?php if($_SESSION['status'] == 0 ): ?>      <!-- Nếu chưa đăng nhập -->
@@ -46,7 +43,7 @@ require_once('../lib/initialize.php');
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.php" onclick="return confirm('Chắc chắn muốn đăng xuất?');">Đăng xuất</a>
                             </li>
-                        <?php elseif ($_SESSION['accountRoles'] == 'Sinh Viên'): ?>     <!-- Nếu là tài khoản sinh viên -->
+                        <?php elseif ($_SESSION['accountRoles'] == 'Người Tìm VIệc'): ?>     <!-- Nếu là tài khoản Người Tìm VIệc -->
                             <li class="nav-item">
                                 <a class="nav-link" href="../user/recruitee/userDetails.php">Người dùng</a>
                             </li>

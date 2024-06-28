@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){  //  nhấn tiếp theo
                 <br><br>
                 <label>Vai trò</label>
                 <select name="roles">
-                    <option value="Sinh Viên">Sinh viên</option>
+                    <option value="Người Tìm Việc">Người Tìm Việc</option>
                     <option value="Nhà Tuyển Dụng">Nhà tuyển dụng</option>
                 </select>
                 <br><br>

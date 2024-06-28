@@ -2,10 +2,6 @@
 require_once('../../lib/database.php');
 require_once('../../lib/initialize.php');
 
-if ($_SESSION['accountRoles'] != "Nhà Tuyển Dụng") {
-    redirect_to('../../home/login.php');
-}
-
 $id = $_SESSION['accountID'];
 $account = find_recruiter_by_account_id($id);
 $accDetails = mysqli_fetch_assoc($account);

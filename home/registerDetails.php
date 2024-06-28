@@ -13,9 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){ // Nhấn tạo tài khoản
         insert_account($newAccount);    // Thêm tài khoản mới vào database
         $accountID = mysqli_insert_id($db);     // Lấy accountID của tài khoản mới
 
-        //tài khoản mới là của sinh viên
-        if ($_SESSION['newRoles'] == "Sinh Viên"){
-            //tạo thông tin sinh viên
+        //tài khoản mới là của Người Tìm Việc
+        if ($_SESSION['newRoles'] == "Người Tìm Việc"){
+            //tạo thông tin Người Tìm Việc
             $newRecruitee = [];
             $newRecruitee['name'] = $_POST['name'];
             $newRecruitee['dateOfBirth'] = $_POST['dateOfBirth'];
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){ // Nhấn tạo tài khoản
             $newRecruitee['major'] = $_POST['major'];
             $newRecruitee['accountID'] = $accountID;
 
-            insert_recruitee($newRecruitee);    // Thêm thông tin sinh viên vào database
+            insert_recruitee($newRecruitee);    // Thêm thông tin Người Tìm Việc vào database
             redirect_to('login.php'); // Quay về đăng nhập
 
         //tài khoản mới là của nhà tuyển dụng
@@ -108,9 +108,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){ // Nhấn tạo tài khoản
                 <br><br>
             <?php endif; ?>
         <br>
-        <!-- Vai trò tài khoản mới là sinh viên -->
-        <?php if($_SESSION['newRoles'] == "Sinh Viên"): ?>
-            <label>Tên sinh viên</label>
+        <!-- Vai trò tài khoản mới là Người Tìm Việc -->
+        <?php if($_SESSION['newRoles'] == "Người Tìm Việc"): ?>
+            <label>Tên Người Tìm Việc</label>
             <input type="text" name="name" value="<?php echo isFormValidated()? "": $_POST['name'] ?>" required>
             <br><br>
             <label>Ngày sinh</label>

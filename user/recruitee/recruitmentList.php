@@ -2,10 +2,6 @@
 require_once('../../lib/database.php');
 require_once('../../lib/initialize.php');
 
-if ($_SESSION['accountRoles'] != "Sinh Viên") {
-    redirect_to('../../home/login.php');
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
