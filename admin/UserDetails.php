@@ -2,15 +2,14 @@
 require_once('../lib/database.php');    //yêu cầu file database.php để chạy file
 require_once('../lib/initialize.php');  //yêu cầu file initialize.php để chạy file
 
-if ($_SERVER["REQUEST_METHOD"] == 'POST'){
-}else { //load Form
+//load Form
     if(!isset($_GET['id'])) {
         redirect_to('AccountManagement.php');
     }
     $id = $_GET['id'];
     $acc = find_account_by_id($id);
     $account = mysqli_fetch_assoc($acc);
-}
+
 ?>
 
 <!DOCTYPE html>

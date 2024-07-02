@@ -133,7 +133,6 @@ require_once('../lib/initialize.php');  //yêu cầu file initialize.php để c
                             </td>
                         </tr>
                     <?php endfor;
-
                     $all_recruitee = find_all_recruitee_with_search($_POST['search']);
                     $count = mysqli_num_rows($all_recruitee);
                     for ($i = 0; $i < $count; $i++):

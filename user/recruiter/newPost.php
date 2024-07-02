@@ -9,8 +9,8 @@ $detail = mysqli_fetch_assoc($recruiter);
 
 if ($_SERVER['REQUEST_METHOD'] == "POST"){
     $post = [];
-    $post['postName'] = $_SESSION['newPostName'];
-    $post['recruiterName'] = $_SESSION['recruiterName'];
+    $post['postName'] = $_POST['postName'];
+    $post['recruiterName'] = $_POST['recruiterName'];
     $post['major'] = $_POST['major'];
     $post['minSalary'] = $_POST['minSalary'];
     $post['workDetails'] = $_POST['workDetails'];
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
     } else{
         $post['experience'] = $_POST['experience'];
     }
-    $post['due'] = $_SESSION['due'];
+    $post['due'] =  $_POST['due'];
     $post['recruiterID'] = $_SESSION['userID'];
     insert_post($post);
     $postID = mysqli_insert_id($db);

@@ -2,9 +2,9 @@
 require_once('../../lib/database.php');
 require_once('../../lib/initialize.php');
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET'){
-    $_SESSION['postID'] = $_GET['id'];
-}
+
+$_SESSION['postID'] = $_GET['id'];
+
 ?>
 
 <!DOCTYPE html>

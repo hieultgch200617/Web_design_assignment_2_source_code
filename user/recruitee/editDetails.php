@@ -75,20 +75,6 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST'){
     <main>
         <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
         <center><h2>Đổi thông tin người dùng</h2></center>
-            <?php if ($_SERVER["REQUEST_METHOD"] == 'POST' && !isFormValidated()): ?> 
-                <div class="error">
-                    <span> Vui lòng sửa những lỗi sau:  </span>
-                    <ul>
-                        <?php
-                        foreach ($errors as $key => $value){
-                            if (!empty($value)){
-                                echo '<li>', $value, '</li>';
-                            }
-                        }
-                        ?>
-                    </ul>
-                </div><br><br>
-            <?php endif; ?>
 
             <input type="hidden" name="recruiteeID" 
             value="<?php echo isFormValidated()? $userDetails['recruiteeID']: $_POST['recruiteeID'] ?>" required >
